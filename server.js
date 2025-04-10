@@ -42,11 +42,12 @@ app.use(
 app.use(express.static("public"));
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "cref8549_cmh",
-  password: "creativemusichub",
-  database: "cref8549_creativemusichub",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
+
 
 // MySQL Database Connection
 // const db = mysql.createConnection({
