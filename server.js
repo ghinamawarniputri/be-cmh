@@ -43,8 +43,9 @@ app.use(express.static("public"));
 
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "cref8549_cmh",
+  password: "creativemusichub",
+  database: "cref8549_creativemusichub",
 });
 
 // MySQL Database Connection
