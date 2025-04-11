@@ -17,6 +17,7 @@ app.use(
     origin: [
       "http://localhost:5173", // Local development
       "https://magang-fikri.vercel.app", // Deployed frontend
+      "https://creativemusichub.com", // Deployed frontend
     ],
     credentials: true,
   })
