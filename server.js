@@ -63,17 +63,17 @@ const db = mysql.createPool({
 // });
 
 // ✅ Handle database connection errors
-const connectDB = () => {
-  db.connect((err) => {
-    if (err) {
-      console.error("❌ Error connecting to the database:", err);
-      setTimeout(connectDB, 5000); // Retry connection after 5 seconds
-    } else {
-      console.log("✅ Connected to the database");
-    }
-  });
-};
-connectDB();
+// const connectDB = () => {
+//   db.connect((err) => {
+//     if (err) {
+//       console.error("❌ Error connecting to the database:", err);
+//       setTimeout(connectDB, 5000); // Retry connection after 5 seconds
+//     } else {
+//       console.log("✅ Connected to the database");
+//     }
+//   });
+// };
+// connectDB();
 
 // ✅ Handle lost MySQL connection (Railway may drop idle connections)
 db.on("error", (err) => {
