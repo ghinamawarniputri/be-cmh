@@ -1000,15 +1000,22 @@ app.delete("/headers/:id", async (req, res) => {
 // Endpoint untuk mengambil data footer
 app.get("/footers", async (req, res) => {
   try {
-    console.log("Trying to query footer data...");
+    console.log("📥 Incoming request to /footers");
+
+    // Uji koneksi sebelum query
+    await db.promise().connect();
+    console.log("✅ DB connection successful");
+
     const [rows] = await db.promise().query("SELECT * FROM footer");
-    console.log("Footer data fetched:", rows);
+    console.log("📦 Query successful, rows:", rows);
+
     res.json(rows);
   } catch (error) {
-    console.error("Error fetching footer data:", error.message);
+    console.error("❌ Error fetching footer data:", error); // INI YANG PENTING
     res.status(500).json({ error: "Failed to fetch footer data" });
   }
 });
+
 
 
 // Endpoint untuk memperbarui data footer
