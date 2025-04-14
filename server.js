@@ -1010,6 +1010,7 @@ app.get("/footers", async (req, res) => {
   }
 });
 
+
 // Endpoint untuk memperbarui data footer
 app.put("/footers/:id", async (req, res) => {
   const { id } = req.params;
