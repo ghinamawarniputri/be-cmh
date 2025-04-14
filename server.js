@@ -1000,10 +1000,12 @@ app.delete("/headers/:id", async (req, res) => {
 // Endpoint untuk mengambil data footer
 app.get("/footers", async (req, res) => {
   try {
+    console.log("Trying to query footer data...");
     const [rows] = await db.promise().query("SELECT * FROM footer");
+    console.log("Footer data fetched:", rows);
     res.json(rows);
   } catch (error) {
-    console.error("Error fetching footer data:", error);
+    console.error("Error fetching footer data:", error.message);
     res.status(500).json({ error: "Failed to fetch footer data" });
   }
 });
