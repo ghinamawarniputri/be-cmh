@@ -14,7 +14,7 @@ const app = express();
 // Ensure static files are served correctly
 app.use(express.static("public"));
 
-const db = mysql.createPool({
+const db = mysql.createConnection({
   connectionLimit: 10,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -64,17 +64,17 @@ app.use(
 // });
 
 // ✅ Handle database connection errors
-// const connectDB = () => {
-//   db.connect((err) => {
-//     if (err) {
-//       console.error("❌ Error connecting to the database:", err);
-//       setTimeout(connectDB, 5000); // Retry connection after 5 seconds
-//     } else {
-//       console.log("✅ Connected to the database");
-//     }
-//   });
-// };
-// connectDB();
+const connectDB = () => {
+  db.connect((err) => {
+    if (err) {
+      console.error("❌ Error connecting to the database:", err);
+      setTimeout(connectDB, 5000); // Retry connection after 5 seconds
+    } else {
+      console.log("✅ Connected to the database");
+    }
+  });
+};
+connectDB();
 
 // ✅ Handle lost MySQL connection (Railway may drop idle connections)
 db.on("error", (err) => {
