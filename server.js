@@ -11,6 +11,17 @@ import axios from "axios";
 dotenv.config();
 const app = express();
 
+// Ensure static files are served correctly
+app.use(express.static("public"));
+
+const db = mysql.createPool({
+  connectionLimit: 10,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
 // ✅ CORS: Allow your deployed frontend & localhost for testing
 app.use(
   cors({
@@ -39,16 +50,6 @@ app.use(
   })
 );
 
-// Ensure static files are served correctly
-app.use(express.static("public"));
-
-const db = mysql.createPool({
-  connectionLimit: 10,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
 
 
 // MySQL Database Connection
